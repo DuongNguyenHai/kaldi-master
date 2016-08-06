@@ -53,6 +53,13 @@ void SingleUtteranceNnet2Decoder::GetLattice(bool end_of_utterance,
                                              CompactLattice *clat) const {
   if (NumFramesDecoded() == 0)
     KALDI_ERR << "You cannot get a lattice if you decoded no frames.";
+
+  // Nguyen Hai Duong [ avoid excuting GetRawLattice when decoder has finished
+  if (decoder_.IsDecodingFinish()){
+    return;
+  }
+  // ]
+  
   Lattice raw_lat;
   decoder_.GetRawLattice(&raw_lat, end_of_utterance);
 

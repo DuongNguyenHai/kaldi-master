@@ -179,6 +179,10 @@ class LatticeFasterOnlineDecoder {
   /// PruneActiveTokensFinal().
   void FinalizeDecoding();
 
+  /// Nguyen Hai Duong [
+  inline bool IsDecodingFinish() const { return decoding_finalized_; }
+  /// ]
+
   /// FinalRelativeCost() serves the same purpose as ReachedFinal(), but gives
   /// more information.  It returns the difference between the best (final-cost
   /// plus cost) of any token on the final frame, and the best cost of any token

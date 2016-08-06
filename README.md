@@ -2,6 +2,8 @@
 (https://travis-ci.org/kaldi-asr/kaldi)
 
 Kaldi Speech Recognition Toolkit
+Modifications by Nguyen Hai Duong
+Date : 
 ================================
 
 To build the toolkit: see `./INSTALL`.  These instructions are valid for UNIX
