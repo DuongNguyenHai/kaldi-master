@@ -1,0 +1,226 @@
+### Training net neurons
+
+local/online/run_nnet2.sh
+steps/online/nnet2/train_diag_ubm.sh --cmd run.pl --nj 1 --num-frames 200000 data/train 256 exp/tri3b exp/nnet2_online/diag_ubm
+steps/online/nnet2/train_diag_ubm.sh: initializing model from E-M in memory, 
+steps/online/nnet2/train_diag_ubm.sh: starting from 128 Gaussians, reaching 256;
+steps/online/nnet2/train_diag_ubm.sh: for 20 iterations, using at most 200000 frames of data
+Getting Gaussian-selection info
+steps/online/nnet2/train_diag_ubm.sh: will train for 4 iterations, in parallel over
+steps/online/nnet2/train_diag_ubm.sh: 1 machines, parallelized with 'run.pl'
+steps/online/nnet2/train_diag_ubm.sh: Training pass 0
+steps/online/nnet2/train_diag_ubm.sh: Training pass 1
+steps/online/nnet2/train_diag_ubm.sh: Training pass 2
+steps/online/nnet2/train_diag_ubm.sh: Training pass 3
+steps/online/nnet2/train_ivector_extractor.sh --cmd run.pl --nj 1 --ivector-dim 50 data/train exp/nnet2_online/diag_ubm exp/nnet2_online/extractor
+steps/online/nnet2/train_ivector_extractor.sh: doing Gaussian selection and posterior computation
+Accumulating stats (pass 0)
+Summing accs (pass 0)
+Updating model (pass 0)
+Accumulating stats (pass 1)
+Summing accs (pass 1)
+Updating model (pass 1)
+Accumulating stats (pass 2)
+Summing accs (pass 2)
+Updating model (pass 2)
+Accumulating stats (pass 3)
+Summing accs (pass 3)
+Updating model (pass 3)
+Accumulating stats (pass 4)
+Summing accs (pass 4)
+Updating model (pass 4)
+Accumulating stats (pass 5)
+Summing accs (pass 5)
+Updating model (pass 5)
+Accumulating stats (pass 6)
+Summing accs (pass 6)
+Updating model (pass 6)
+Accumulating stats (pass 7)
+Summing accs (pass 7)
+Updating model (pass 7)
+Accumulating stats (pass 8)
+Summing accs (pass 8)
+Updating model (pass 8)
+Accumulating stats (pass 9)
+Summing accs (pass 9)
+Updating model (pass 9)
+steps/online/nnet2/copy_data_dir.sh: mapping cmvn.scp, but you may want to recompute it if it's needed,
+ as it would probably change.
+steps/online/nnet2/copy_data_dir.sh: copied data from data/train to data/train_max2, with --utts-per-spk-max 2
+utils/validate_data_dir.sh: Successfully validated data-directory data/train_max2
+steps/online/nnet2/extract_ivectors_online.sh --cmd run.pl --nj 1 data/train_max2 exp/nnet2_online/extractor exp/nnet2_online/ivectors
+steps/online/nnet2/extract_ivectors_online.sh: extracting iVectors
+steps/online/nnet2/extract_ivectors_online.sh: combining iVectors across jobs
+steps/nnet2/train_pnorm_simple2.sh --stage -10 --splice-width 7 --feat-type raw --online-ivector-dir exp/nnet2_online/ivectors --cmvn-opts --norm-means=false --norm-vars=false --num-threads 2 --minibatch-size 128 --parallel-opts -pe smp 2 --num-jobs-nnet 2 --num-epochs 25 --add-layers-period 1 --num-hidden-layers 3 --mix-up 4000 --initial-learning-rate 0.02 --final-learning-rate 0.004 --cmd run.pl --pnorm-input-dim 800 --pnorm-output-dim 160 data/train data/lang exp/tri3b_ali exp/nnet2_online/nnet_a
+steps/nnet2/train_pnorm_simple2.sh: calling get_lda.sh
+steps/nnet2/get_lda.sh --cmvn-opts --norm-means=false --norm-vars=false --feat-type raw --online-ivector-dir exp/nnet2_online/ivectors --transform-dir exp/tri3b_ali --left-context 7 --right-context 7 --cmd run.pl data/train data/lang exp/tri3b_ali exp/nnet2_online/nnet_a
+steps/nnet2/get_lda.sh: feature type is raw
+feat-to-dim 'ark,s,cs:utils/subset_scp.pl --quiet 10000 data/train/split1/1/feats.scp | apply-cmvn --norm-means=false --norm-vars=false --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:- ark:- |' - 
+apply-cmvn --norm-means=false --norm-vars=false --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:- ark:- 
+WARNING (feat-to-dim:Close():kaldi-io.cc:500) Pipe utils/subset_scp.pl --quiet 10000 data/train/split1/1/feats.scp | apply-cmvn --norm-means=false --norm-vars=false --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:- ark:- | had nonzero return status 36096
+feat-to-dim scp:exp/nnet2_online/ivectors/ivector_online.scp - 
+feat-to-dim "ark,s,cs:utils/subset_scp.pl --quiet 10000 data/train/split1/1/feats.scp | apply-cmvn --norm-means=false --norm-vars=false --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:- ark:- | splice-feats --left-context=7 --right-context=7 ark:- ark:- | paste-feats --length-tolerance=10 ark:- 'ark,s,cs:utils/filter_scp.pl data/train/split1/1/utt2spk exp/nnet2_online/ivectors/ivector_online.scp | subsample-feats --n=-10 scp:- ark:- | ivector-randomize --randomize-prob=0.0 ark:- ark:- |' ark:- |" - 
+splice-feats --left-context=7 --right-context=7 ark:- ark:- 
+apply-cmvn --norm-means=false --norm-vars=false --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:- ark:- 
+paste-feats --length-tolerance=10 ark:- 'ark,s,cs:utils/filter_scp.pl data/train/split1/1/utt2spk exp/nnet2_online/ivectors/ivector_online.scp | subsample-feats --n=-10 scp:- ark:- | ivector-randomize --randomize-prob=0.0 ark:- ark:- |' ark:- 
+subsample-feats --n=-10 scp:- ark:- 
+ivector-randomize --randomize-prob=0.0 ark:- ark:- 
+WARNING (feat-to-dim:Close():kaldi-io.cc:500) Pipe utils/subset_scp.pl --quiet 10000 data/train/split1/1/feats.scp | apply-cmvn --norm-means=false --norm-vars=false --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:- ark:- | splice-feats --left-context=7 --right-context=7 ark:- ark:- | paste-feats --length-tolerance=10 ark:- 'ark,s,cs:utils/filter_scp.pl data/train/split1/1/utt2spk exp/nnet2_online/ivectors/ivector_online.scp | subsample-feats --n=-10 scp:- ark:- | ivector-randomize --randomize-prob=0.0 ark:- ark:- |' ark:- | had nonzero return status 36096
+steps/nnet2/get_lda.sh: Accumulating LDA statistics.
+steps/nnet2/get_lda.sh: Finished estimating LDA
+steps/nnet2/train_pnorm_simple2.sh: calling get_egs2.sh
+steps/nnet2/get_egs2.sh --cmvn-opts --norm-means=false --norm-vars=false --feat-type raw --online-ivector-dir exp/nnet2_online/ivectors --transform-dir exp/tri3b_ali --left-context 7 --right-context 7 --io-opts -tc 5 --samples-per-iter 400000 --stage 0 --cmd run.pl data/train exp/tri3b_ali exp/nnet2_online/nnet_a/egs
+steps/nnet2/get_egs2.sh: feature type is raw
+feat-to-dim scp:exp/nnet2_online/ivectors/ivector_online.scp - 
+steps/nnet2/get_egs2.sh: working out number of frames of training data
+feat-to-len scp:data/train/feats.scp ark,t:- 
+steps/nnet2/get_egs2.sh: reduced frames_per_eg to 1 because amount of data is small.
+steps/nnet2/get_egs2.sh: creating 1 archives, each with 396684 egs, with
+steps/nnet2/get_egs2.sh:   1 labels per example, and (left,right) context = (7,7)
+steps/nnet2/get_egs2.sh: Getting validation and training subset examples.
+steps/nnet2/get_egs2.sh: ... extracting validation and training-subset alignments.
+copy-int-vector ark:- ark,t:- 
+LOG (copy-int-vector:main():copy-int-vector.cc:83) Copied 1062 vectors of int32.
+... Getting subsets of validation examples for diagnostics and combination.
+steps/nnet2/get_egs2.sh: Generating training examples on disk
+steps/nnet2/get_egs2.sh: recombining and shuffling order of archives on disk
+steps/nnet2/get_egs2.sh: removing temporary archives
+steps/nnet2/get_egs2.sh: Finished preparing training examples
+steps/nnet2/train_pnorm_simple2.sh: --num-jobs-nnet cannot exceed num-archives*frames-per-eg which is 1
+steps/nnet2/train_pnorm_simple2.sh: setting --num-jobs-nnet to 1
+steps/nnet2/train_pnorm_simple2.sh: initializing neural net
+Training transition probabilities and setting priors
+prepare vector assignment for FixedScaleComponent before softmax
+(use priors^-0.25 and rescale to average 1)
+insert an additional layer of FixedScaleComponent before softmax
+nnet-am-info exp/nnet2_online/nnet_a/0.mdl 
+LOG (nnet-am-info:main():nnet-am-info.cc:76) Printed info about exp/nnet2_online/nnet_a/0.mdl
+nnet-init exp/nnet2_online/nnet_a/per_element.config - 
+LOG (nnet-init:main():nnet-init.cc:69) Initialized raw neural net and wrote it to -
+nnet-insert --insert-at=6 --randomize-next-component=false exp/nnet2_online/nnet_a/0.mdl - exp/nnet2_online/nnet_a/0.mdl 
+LOG (nnet-insert:main():nnet-insert.cc:106) Inserted 1 components at position 6
+LOG (nnet-insert:main():nnet-insert.cc:132) Write neural-net acoustic model to exp/nnet2_online/nnet_a/0.mdl
+steps/nnet2/train_pnorm_simple2.sh: Will train for 25 epochs = 25 iterations
+steps/nnet2/train_pnorm_simple2.sh: Will not do mix up
+Training neural net (pass 0)
+Training neural net (pass 1)
+nnet-am-info exp/nnet2_online/nnet_a/1.mdl 
+LOG (nnet-am-info:main():nnet-am-info.cc:76) Printed info about exp/nnet2_online/nnet_a/1.mdl
+Training neural net (pass 2)
+nnet-am-info exp/nnet2_online/nnet_a/2.mdl 
+LOG (nnet-am-info:main():nnet-am-info.cc:76) Printed info about exp/nnet2_online/nnet_a/2.mdl
+Training neural net (pass 3)
+Training neural net (pass 4)
+Training neural net (pass 5)
+Training neural net (pass 6)
+Training neural net (pass 7)
+Training neural net (pass 8)
+Training neural net (pass 9)
+Training neural net (pass 10)
+Training neural net (pass 11)
+Training neural net (pass 12)
+Training neural net (pass 13)
+Training neural net (pass 14)
+Warning: the mix up opertion is disabled!
+    Ignore mix up leaves number specified
+Training neural net (pass 15)
+Training neural net (pass 16)
+Training neural net (pass 17)
+Training neural net (pass 18)
+Training neural net (pass 19)
+Training neural net (pass 20)
+Training neural net (pass 21)
+Training neural net (pass 22)
+Training neural net (pass 23)
+Training neural net (pass 24)
+Doing final combination to produce final.mdl
+Getting average posterior for purposes of adjusting the priors.
+Re-adjusting priors based on computed posteriors
+Done
+Cleaning up data
+steps/nnet2/remove_egs.sh: Finished deleting examples in exp/nnet2_online/nnet_a/egs
+Removing most of the models
+steps/online/nnet2/extract_ivectors_online.sh --cmd run.pl --nj 1 data/test exp/nnet2_online/extractor exp/nnet2_online/ivectors_test
+steps/online/nnet2/extract_ivectors_online.sh: extracting iVectors
+steps/online/nnet2/extract_ivectors_online.sh: combining iVectors across jobs
+steps/nnet2/decode.sh --config conf/decode.config --cmd run.pl --nj 1 --online-ivector-dir exp/nnet2_online/ivectors_test exp/tri3b/graph data/test exp/nnet2_online/nnet_a/decode
+steps/nnet2/decode.sh: feature type is raw
+score best paths
+exp/nnet2_online/nnet_a/decode/wer_10
+%WER 0.60 [ 70 / 11676, 70 ins, 0 del, 0 sub ]
+%SER 5.74 [ 61 / 1062 ]
+exp/nnet2_online/nnet_a/decode/wer_11
+%WER 0.59 [ 69 / 11676, 69 ins, 0 del, 0 sub ]
+%SER 5.74 [ 61 / 1062 ]
+exp/nnet2_online/nnet_a/decode/wer_12
+%WER 0.54 [ 63 / 11676, 63 ins, 0 del, 0 sub ]
+%SER 5.27 [ 56 / 1062 ]
+exp/nnet2_online/nnet_a/decode/wer_13
+%WER 0.53 [ 62 / 11676, 62 ins, 0 del, 0 sub ]
+%SER 5.18 [ 55 / 1062 ]
+exp/nnet2_online/nnet_a/decode/wer_14
+%WER 0.53 [ 62 / 11676, 62 ins, 0 del, 0 sub ]
+%SER 5.18 [ 55 / 1062 ]
+exp/nnet2_online/nnet_a/decode/wer_15
+%WER 0.52 [ 61 / 11676, 61 ins, 0 del, 0 sub ]
+%SER 5.08 [ 54 / 1062 ]
+exp/nnet2_online/nnet_a/decode/wer_16
+%WER 0.51 [ 59 / 11676, 59 ins, 0 del, 0 sub ]
+%SER 4.99 [ 53 / 1062 ]
+exp/nnet2_online/nnet_a/decode/wer_17
+%WER 0.49 [ 57 / 11676, 57 ins, 0 del, 0 sub ]
+%SER 4.90 [ 52 / 1062 ]
+exp/nnet2_online/nnet_a/decode/wer_18
+%WER 0.49 [ 57 / 11676, 57 ins, 0 del, 0 sub ]
+%SER 4.90 [ 52 / 1062 ]
+exp/nnet2_online/nnet_a/decode/wer_19
+%WER 0.48 [ 56 / 11676, 56 ins, 0 del, 0 sub ]
+%SER 4.80 [ 51 / 1062 ]
+exp/nnet2_online/nnet_a/decode/wer_20
+%WER 0.48 [ 56 / 11676, 56 ins, 0 del, 0 sub ]
+%SER 4.80 [ 51 / 1062 ]
+exp/nnet2_online/nnet_a/decode/wer_9
+%WER 0.63 [ 73 / 11676, 73 ins, 0 del, 0 sub ]
+%SER 5.93 [ 63 / 1062 ]
+score confidence and timing with sclite
+Decoding done.
+steps/online/nnet2/prepare_online_decoding.sh data/lang exp/nnet2_online/extractor exp/nnet2_online/nnet_a exp/nnet2_online/nnet_a_online
+steps/online/nnet2/prepare_online_decoding.sh: preparing configuration files in /home/season/kaldi-trunk/egs/connected-digits/s5/exp/nnet2_online/nnet_a_online/conf
+steps/online/nnet2/prepare_online_decoding.sh: created config file /home/season/kaldi-trunk/egs/connected-digits/s5/exp/nnet2_online/nnet_a_online/conf/online_nnet2_decoding.conf
+steps/online/nnet2/decode.sh --config conf/decode.config --cmd run.pl --nj 1 exp/tri3b/graph data/test exp/nnet2_online/nnet_a_online/decode
+exp/nnet2_online/nnet_a_online/decode/wer_10
+%WER 0.62 [ 72 / 11676, 72 ins, 0 del, 0 sub ]
+%SER 5.84 [ 62 / 1062 ]
+exp/nnet2_online/nnet_a_online/decode/wer_11
+%WER 0.61 [ 71 / 11676, 71 ins, 0 del, 0 sub ]
+%SER 5.74 [ 61 / 1062 ]
+exp/nnet2_online/nnet_a_online/decode/wer_12
+%WER 0.57 [ 66 / 11676, 66 ins, 0 del, 0 sub ]
+%SER 5.46 [ 58 / 1062 ]
+exp/nnet2_online/nnet_a_online/decode/wer_13
+%WER 0.54 [ 63 / 11676, 63 ins, 0 del, 0 sub ]
+%SER 5.27 [ 56 / 1062 ]
+exp/nnet2_online/nnet_a_online/decode/wer_14
+%WER 0.53 [ 62 / 11676, 62 ins, 0 del, 0 sub ]
+%SER 5.18 [ 55 / 1062 ]
+exp/nnet2_online/nnet_a_online/decode/wer_15
+%WER 0.52 [ 61 / 11676, 61 ins, 0 del, 0 sub ]
+%SER 5.08 [ 54 / 1062 ]
+exp/nnet2_online/nnet_a_online/decode/wer_16
+%WER 0.52 [ 61 / 11676, 61 ins, 0 del, 0 sub ]
+%SER 5.08 [ 54 / 1062 ]
+exp/nnet2_online/nnet_a_online/decode/wer_17
+%WER 0.51 [ 59 / 11676, 59 ins, 0 del, 0 sub ]
+%SER 4.90 [ 52 / 1062 ]
+exp/nnet2_online/nnet_a_online/decode/wer_18
+%WER 0.50 [ 58 / 11676, 58 ins, 0 del, 0 sub ]
+%SER 4.80 [ 51 / 1062 ]
+exp/nnet2_online/nnet_a_online/decode/wer_19
+%WER 0.48 [ 56 / 11676, 56 ins, 0 del, 0 sub ]
+%SER 4.61 [ 49 / 1062 ]
+exp/nnet2_online/nnet_a_online/decode/wer_20
+%WER 0.46 [ 54 / 11676, 54 ins, 0 del, 0 sub ]
+%SER 4.52 [ 48 / 1062 ]
+exp/nnet2_online/nnet_a_online/decode/wer_9
+%WER 0.63 [ 73 / 11676, 73 ins, 0 del, 0 sub ]
+%SER 5.93 [ 63 / 1062 ]
