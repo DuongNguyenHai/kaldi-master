@@ -1,4 +1,10 @@
-# Search all fiel by key word : "Nguyen Hai Duong"
+# Instruction 
+
+
+
+
+# everything had pushed to github. This below just is logs.
+# Modified by Duong
 
 1. files was fixed to run with server-online-decoding (dnn)
 
@@ -14,8 +20,7 @@
 
 3. Fix Makefile
 
--	onlinebin/Makefile
-
+-	onlinebin/Makefile : add "client-online" in BINFILES
 
 
 
