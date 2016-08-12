@@ -1,0 +1,4 @@
+--feature-type=mfcc
+--mfcc-config=/home/season/kaldi-trunk/egs/test-connected-digits-2/s5/exp/nnet2_online/nnet_ms_a_online/conf/mfcc.conf
+--ivector-extraction-config=/home/season/kaldi-trunk/egs/test-connected-digits-2/s5/exp/nnet2_online/nnet_ms_a_online/conf/ivector_extractor.conf
+--endpoint.silence-phones=1:2:3:4:5

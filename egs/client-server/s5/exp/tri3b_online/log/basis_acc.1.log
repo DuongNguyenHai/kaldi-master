@@ -1,0 +1,31 @@
+# ali-to-post "ark:gunzip -c exp/tri3b/ali.1.gz|" ark:- | weight-silence-post 0.01 1:2:3:4:5 exp/tri3b_online/final.mdl ark:- ark:- | gmm-post-to-gpost exp/tri3b_online/final.mdl "ark,s,cs:apply-cmvn  --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:data/train/split1/1/feats.scp ark:- | splice-feats --left-context=3 --right-context=3 ark:- ark:- | transform-feats exp/tri3b_online/final.mat ark:- ark:- | transform-feats --utt2spk=ark:data/train/split1/1/utt2spk ark:exp/tri3b/trans.1 ark:- ark:- |" ark:- ark:- | gmm-basis-fmllr-accs-gpost exp/tri3b_online/final.mdl "ark,s,cs:apply-cmvn  --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:data/train/split1/1/feats.scp ark:- | splice-feats --left-context=3 --right-context=3 ark:- ark:- | transform-feats exp/tri3b_online/final.mat ark:- ark:- |" ark,s,cs:- exp/tri3b_online/basis.acc.1 
+# Started at Mon Mar  7 15:19:06 ICT 2016
+#
+gmm-basis-fmllr-accs-gpost exp/tri3b_online/final.mdl 'ark,s,cs:apply-cmvn  --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:data/train/split1/1/feats.scp ark:- | splice-feats --left-context=3 --right-context=3 ark:- ark:- | transform-feats exp/tri3b_online/final.mat ark:- ark:- |' ark,s,cs:- exp/tri3b_online/basis.acc.1 
+gmm-post-to-gpost exp/tri3b_online/final.mdl 'ark,s,cs:apply-cmvn  --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:data/train/split1/1/feats.scp ark:- | splice-feats --left-context=3 --right-context=3 ark:- ark:- | transform-feats exp/tri3b_online/final.mat ark:- ark:- | transform-feats --utt2spk=ark:data/train/split1/1/utt2spk ark:exp/tri3b/trans.1 ark:- ark:- |' ark:- ark:- 
+weight-silence-post 0.01 1:2:3:4:5 exp/tri3b_online/final.mdl ark:- ark:- 
+ali-to-post 'ark:gunzip -c exp/tri3b/ali.1.gz|' ark:- 
+apply-cmvn --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:data/train/split1/1/feats.scp ark:- 
+apply-cmvn --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:data/train/split1/1/feats.scp ark:- 
+transform-feats --utt2spk=ark:data/train/split1/1/utt2spk ark:exp/tri3b/trans.1 ark:- ark:- 
+transform-feats exp/tri3b_online/final.mat ark:- ark:- 
+transform-feats exp/tri3b_online/final.mat ark:- ark:- 
+splice-feats --left-context=3 --right-context=3 ark:- ark:- 
+splice-feats --left-context=3 --right-context=3 ark:- ark:- 
+LOG (ali-to-post:main():ali-to-post.cc:65) Converted 1071 alignments.
+LOG (weight-silence-post:main():weight-silence-post.cc:95) Done 1071 posteriors.
+LOG (apply-cmvn:main():apply-cmvn.cc:146) Applied cepstral mean normalization to 1071 utterances, errors on 0
+LOG (apply-cmvn:main():apply-cmvn.cc:146) Applied cepstral mean normalization to 1071 utterances, errors on 0
+LOG (transform-feats:main():transform-feats.cc:158) Overall average [pseudo-]logdet is -84.8605 over 400632 frames.
+LOG (transform-feats:main():transform-feats.cc:161) Applied transform to 1071 utterances; 0 had errors.
+LOG (transform-feats:main():transform-feats.cc:158) Overall average logdet is 3.59255 over 400632 frames.
+LOG (transform-feats:main():transform-feats.cc:161) Applied transform to 1071 utterances; 0 had errors.
+LOG (gmm-post-to-gpost:main():gmm-post-to-gpost.cc:124) Done 1071 files, 0 with no posteriors, 0 with other errors.
+LOG (gmm-post-to-gpost:main():gmm-post-to-gpost.cc:128) Overall avg like per frame (Gaussian only) = -47.6989 over 346146 frames.
+LOG (gmm-post-to-gpost:main():gmm-post-to-gpost.cc:131) Done converting post to gpost
+LOG (transform-feats:main():transform-feats.cc:158) Overall average [pseudo-]logdet is -84.8605 over 400632 frames.
+LOG (transform-feats:main():transform-feats.cc:161) Applied transform to 1071 utterances; 0 had errors.
+LOG (gmm-basis-fmllr-accs-gpost:main():gmm-basis-fmllr-accs-gpost.cc:168) Done 1071 files, 0 with no posts, 0 with other errors.
+LOG (gmm-basis-fmllr-accs-gpost:main():gmm-basis-fmllr-accs-gpost.cc:170) Written gradient scatter to exp/tri3b_online/basis.acc.1
+# Accounting: time=16 threads=1
+# Ended (code 0) at Mon Mar  7 15:19:22 ICT 2016, elapsed time 16 seconds

@@ -1,0 +1,14 @@
+# lattice-best-path --lm-scale=9 --word-symbol-table=exp/tri3b/graph/words.txt "ark:gunzip -c exp/tri3b_online/decode/lat.*.gz|" ark,t:exp/tri3b_online/decode/scoring/9.tra 
+# Started at Sat Mar 19 19:17:00 ICT 2016
+#
+lattice-best-path --lm-scale=9 --word-symbol-table=exp/tri3b/graph/words.txt 'ark:gunzip -c exp/tri3b_online/decode/lat.*.gz|' ark,t:exp/tri3b_online/decode/scoring/9.tra 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance duong-part1-test1, best cost 658.395 + 32768.5 = 33426.9 over 315 frames.
+duong-part1-test1 không chín một ba không một không sáu bảy không 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance duong-part1-test2, best cost 616.983 + 30058 = 30675 over 307 frames.
+duong-part1-test2 không chín một ba hai bốn chín một hai năm 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance duong-part1-test3, best cost 597.098 + 31274.2 = 31871.3 over 316 frames.
+duong-part1-test3 không chín một hai một không năm sáu tám hai 
+LOG (lattice-best-path:main():lattice-best-path.cc:124) Overall score per frame is 102.317 = 1.99624 [graph] + 100.321 [acoustic] over 938 frames.
+LOG (lattice-best-path:main():lattice-best-path.cc:128) Done 3 lattices, failed for 0
+# Accounting: time=0 threads=1
+# Ended (code 0) at Sat Mar 19 19:17:00 ICT 2016, elapsed time 0 seconds

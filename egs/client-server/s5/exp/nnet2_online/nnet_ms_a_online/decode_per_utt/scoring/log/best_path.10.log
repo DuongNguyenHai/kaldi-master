@@ -1,0 +1,60 @@
+# lattice-best-path --lm-scale=10 --word-symbol-table=exp/tri3b/graph/words.txt "ark:gunzip -c exp/nnet2_online/nnet_ms_a_online/decode_per_utt/lat.*.gz|" ark,t:exp/nnet2_online/nnet_ms_a_online/decode_per_utt/scoring/10.tra 
+# Started at Fri Mar  4 09:49:13 ICT 2016
+#
+lattice-best-path --lm-scale=10 --word-symbol-table=exp/tri3b/graph/words.txt 'ark:gunzip -c exp/nnet2_online/nnet_ms_a_online/decode_per_utt/lat.*.gz|' ark,t:exp/nnet2_online/nnet_ms_a_online/decode_per_utt/scoring/10.tra 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance duong-part1-test1, best cost 714.897 + -317.149 = 397.748 over 315 frames.
+duong-part1-test1 không chín một ba không hai một không sáu bảy không 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance duong-part1-test2, best cost 624.098 + -1360.91 = -736.808 over 307 frames.
+duong-part1-test2 không chín một ba hai bốn chín một hai năm 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance duong-part1-test3, best cost 703.589 + 574.993 = 1278.58 over 316 frames.
+duong-part1-test3 không chín một hai hai một không năm sáu tám hai 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance duong-part1-test4, best cost 628.612 + -1145 = -516.387 over 315 frames.
+duong-part1-test4 ba sáu tám hai bốn năm bảy bốn chín một 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance duong-part1-test5, best cost 748.922 + -1871.11 = -1122.19 over 397 frames.
+duong-part1-test5 hai ba bốn chín hai ba bốn năm bảy 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance duong-part1-test6, best cost 765.064 + -440.121 = 324.943 over 385 frames.
+duong-part1-test6 một hai hai ba bốn năm sáu bảy tám chín 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance duong-part1-test7, best cost 3002.79 + -10157 = -7154.2 over 2076 frames.
+duong-part1-test7 năm sáu tám ba hai bốn một bảy không chín hai bốn một năm sáu chín tám bảy hai một không năm sáu tám hai ba bảy bốn chín sáu tám ba hai 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance huong-part1-test1, best cost 803.356 + 4292.57 = 5095.92 over 437 frames.
+huong-part1-test1 không bốn chín bốn sáu một ba ba không sáu không sáu bảy không không 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance huong-part1-test2, best cost 580.645 + 2927 = 3507.64 over 371 frames.
+huong-part1-test2 không chín sáu bảy ba bốn chín sáu hai tám 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance huong-part1-test3, best cost 539.592 + 3397.02 = 3936.61 over 292 frames.
+huong-part1-test3 sáu bảy bốn sáu hai một không tám tám ba 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance huong-part1-test4, best cost 629.133 + 3071.45 = 3700.58 over 291 frames.
+huong-part1-test4 ba sáu sáu tám hai không bốn tám bảy bốn bốn sáu 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance huong-part1-test5, best cost 505.981 + 3047.94 = 3553.92 over 233 frames.
+huong-part1-test5 sáu sáu bốn bốn sáu ba bốn tám sáu 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance huong-part1-test6, best cost 411.773 + 2518.87 = 2930.64 over 213 frames.
+huong-part1-test6 sáu hai ba bốn hai sáu bảy 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance linh-part1-test1, best cost 626.39 + 1497.29 = 2123.68 over 537 frames.
+linh-part1-test1 không chín một ba không một không không bảy không 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance linh-part1-test2, best cost 639.216 + 3533.81 = 4173.03 over 327 frames.
+linh-part1-test2 không bốn chín một bảy sáu hai bốn chín một hai năm 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance linh-part1-test3, best cost 632.216 + 3394.9 = 4027.12 over 359 frames.
+linh-part1-test3 không chín bảy một năm không một không năm sáu năm năm 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance linh-part1-test4, best cost 647.995 + 3502.13 = 4150.12 over 329 frames.
+linh-part1-test4 sáu năm sáu năm năm tám bốn tám bảy bốn chín một 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance linh-part1-test5, best cost 540.1 + 3632.11 = 4172.21 over 270 frames.
+linh-part1-test5 năm bốn bốn chín hai hai năm năm một 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance linh-part1-test6, best cost 585.475 + 3201.39 = 3786.87 over 296 frames.
+linh-part1-test6 một năm một sáu bốn năm sáu bảy không chín 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance loc-part1-test1, best cost 669.945 + -1640.69 = -970.746 over 336 frames.
+loc-part1-test1 không chín một ba không một không sáu bảy không 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance loc-part1-test2, best cost 626.194 + -1450.57 = -824.373 over 323 frames.
+loc-part1-test2 không chín một ba hai bốn chín một hai năm 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance loc-part1-test3, best cost 779.968 + 815.562 = 1595.53 over 374 frames.
+loc-part1-test3 không chín một hai một không năm sáu tám sáu hai 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance loc-part1-test4, best cost 818.444 + 899.917 = 1718.36 over 365 frames.
+loc-part1-test4 ba sáu ba tám hai bốn năm bảy bốn chín một 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance loc-part1-test5, best cost 743.992 + -1797.15 = -1053.16 over 373 frames.
+loc-part1-test5 hai ba bốn chín hai ba bốn năm bảy 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance loc-part1-test6, best cost 786.702 + -1493.6 = -706.895 over 402 frames.
+loc-part1-test6 một hai ba bốn năm sáu bảy tám chín 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance loc-part1-test7, best cost 1965.15 + -7047.18 = -5082.03 over 1528 frames.
+loc-part1-test7 năm sáu tám ba hai bốn một bảy không chín hai bốn một năm sáu chín tám bảy hai một không năm sáu tám hai ba bảy bốn chín sáu tám ba hai 
+LOG (lattice-best-path:main():lattice-best-path.cc:124) Overall score per frame is 2.74554 = 1.76088 [graph] + 0.984659 [acoustic] over 11767 frames.
+LOG (lattice-best-path:main():lattice-best-path.cc:128) Done 26 lattices, failed for 0
+# Accounting: time=0 threads=1
+# Ended (code 0) at Fri Mar  4 09:49:13 ICT 2016, elapsed time 0 seconds

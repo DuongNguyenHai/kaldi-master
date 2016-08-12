@@ -1,0 +1,18 @@
+# online2-wav-nnet2-latgen-faster --online=true --do-endpointing=false --config=exp/nnet2_online/nnet_ms_a_online/conf/online_nnet2_decoding.conf --max-active=7000 --beam=40.0 --lattice-beam=6.0 --acoustic-scale=0.1 --word-symbol-table=exp/tri3b-dnn/graph/words.txt exp/nnet2_online/nnet_ms_a_online/final.mdl exp/tri3b-dnn/graph/HCLG.fst ark:mytest/test-one/split1/1/spk2utt "ark,s,cs:wav-copy scp,p:mytest/test-one/split1/1/wav.scp ark:- |" "ark:|gzip -c > exp/nnet2_online/nnet_ms_a_online/decode/lat.1.gz" 
+# Started at Sun Mar 20 14:55:20 ICT 2016
+#
+online2-wav-nnet2-latgen-faster --online=true --do-endpointing=false --config=exp/nnet2_online/nnet_ms_a_online/conf/online_nnet2_decoding.conf --max-active=7000 --beam=40.0 --lattice-beam=6.0 --acoustic-scale=0.1 --word-symbol-table=exp/tri3b-dnn/graph/words.txt exp/nnet2_online/nnet_ms_a_online/final.mdl exp/tri3b-dnn/graph/HCLG.fst ark:mytest/test-one/split1/1/spk2utt 'ark,s,cs:wav-copy scp,p:mytest/test-one/split1/1/wav.scp ark:- |' 'ark:|gzip -c > exp/nnet2_online/nnet_ms_a_online/decode/lat.1.gz' 
+LOG (online2-wav-nnet2-latgen-faster:ComputeDerivedVars():ivector-extractor.cc:183) Computing derived variables for iVector extractor
+LOG (online2-wav-nnet2-latgen-faster:ComputeDerivedVars():ivector-extractor.cc:204) Done.
+wav-copy scp,p:mytest/test-one/split1/1/wav.scp ark:- 
+LOG (wav-copy:main():wav-copy.cc:56) Copied 1 wave files
+FAF-AFN00003-F28VAF1 không chín một ba không một không sáu bảy không 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:309) Decoded utterance FAF-AFN00003-F28VAF1
+LOG (online2-wav-nnet2-latgen-faster:Print():online-timing.cc:36) Timing stats: real-time factor was 1.00314 (note: this cannot be less than one.)
+LOG (online2-wav-nnet2-latgen-faster:Print():online-timing.cc:38) Average delay was 0.010848 seconds.
+LOG (online2-wav-nnet2-latgen-faster:Print():online-timing.cc:42) Percentage of time spent idling was 91.4905
+LOG (online2-wav-nnet2-latgen-faster:Print():online-timing.cc:44) Longest delay was 0.010848 seconds for utterance 'FAF-AFN00003-F28VAF1'
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:315) Decoded 1 utterances, 0 with errors.
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:317) Overall likelihood per frame was 0.340096 per frame over 344 frames.
+# Accounting: time=1 threads=1
+# Ended (code 0) at Sun Mar 20 14:55:21 ICT 2016, elapsed time 1 seconds

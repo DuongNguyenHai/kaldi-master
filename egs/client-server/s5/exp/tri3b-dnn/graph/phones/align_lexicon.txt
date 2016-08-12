@@ -1,0 +1,12 @@
+!SIL !SIL SIL_S
+<eps> <eps> SIL
+ba ba b_B a_E
+bảy bảy b_B ay_E
+bốn bốn b_B od_I nw_E
+chín chín ch_B ib_I nw_E
+hai hai h_B ai_E
+không không kh_B ob_I ng_E
+một một m_B oc_I tw_E
+năm năm n_B ad_I mw_E
+sáu sáu s_B au_E
+tám tám t_B ab_I mw_E

@@ -1,0 +1,13 @@
+10.	exp-v10	
+	Date : 1-3-2016
+
+-	Data : connected-digit-p1
+-	Training with code : 
+		-> local/online/run_nnet2_multisplice.sh 
+		-> local/online/run_nnet2_multisplice_disc.sh
+-	Config : default (3 hidden layer,--pnorm-input-dim 800,--pnorm-output-dim 160)
+-	Tool decoding : online2-wav-nnet2-latgen-faster
+-	Decoding + per-utt : connected-digit-p2
+	%WER 1.23 [ 144 / 11738, 136 ins, 1 del, 7 sub ]
+	%SER 11.06 [ 118 / 1067 ]
+

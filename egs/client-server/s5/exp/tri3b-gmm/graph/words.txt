@@ -1,0 +1,15 @@
+<eps> 0
+!SIL 1
+ba 2
+bảy 3
+bốn 4
+chín 5
+hai 6
+không 7
+một 8
+năm 9
+sáu 10
+tám 11
+#0 12
+<s> 13
+</s> 14

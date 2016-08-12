@@ -1,0 +1,10 @@
+# lattice-best-path --lm-scale=20 --word-symbol-table=exp/tri3b-dnn/graph/words.txt "ark:gunzip -c exp/nnet2_online/nnet_ms_a_online/decode/lat.*.gz|" ark,t:exp/nnet2_online/nnet_ms_a_online/decode/scoring/20.tra 
+# Started at Sun Mar 20 14:55:21 ICT 2016
+#
+lattice-best-path --lm-scale=20 --word-symbol-table=exp/tri3b-dnn/graph/words.txt 'ark:gunzip -c exp/nnet2_online/nnet_ms_a_online/decode/lat.*.gz|' ark,t:exp/nnet2_online/nnet_ms_a_online/decode/scoring/20.tra 
+LOG (lattice-best-path:main():lattice-best-path.cc:99) For utterance FAF-AFN00003-F28VAF1, best cost 1058.5 + -1699.18 = -640.681 over 344 frames.
+FAF-AFN00003-F28VAF1 không chín một ba không một không sáu bảy không 
+LOG (lattice-best-path:main():lattice-best-path.cc:124) Overall score per frame is -1.86244 = 3.07704 [graph] + -4.93948 [acoustic] over 344 frames.
+LOG (lattice-best-path:main():lattice-best-path.cc:128) Done 1 lattices, failed for 0
+# Accounting: time=0 threads=1
+# Ended (code 0) at Sun Mar 20 14:55:21 ICT 2016, elapsed time 0 seconds

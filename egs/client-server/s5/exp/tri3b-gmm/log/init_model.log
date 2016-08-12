@@ -1,0 +1,3 @@
+gmm-init-model --write-occs=exp/tri3b/1.occs exp/tri3b/tree exp/tri3b/treeacc data/lang/topo exp/tri3b/1.mdl 
+LOG (gmm-init-model:main():gmm-init-model.cc:271) Number of separate statistics is 467
+LOG (gmm-init-model:main():gmm-init-model.cc:306) Wrote model.

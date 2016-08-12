@@ -1,0 +1,50 @@
+# online2-wav-gmm-latgen-faster --do-endpointing=false --config=exp/tri3b_online/conf/online_decoding.conf --max-active=7000 --beam=20.0 --lattice-beam=10.0 --acoustic-scale=0.083333 --word-symbol-table=exp/tri3b/graph/words.txt exp/tri3b/graph/HCLG.fst ark:mytest/test-3/split1/1/spk2utt scp:mytest/test-3/split1/1/wav.scp "ark:|gzip -c > exp/tri3b_online/decode/lat.1.gz" 
+# Started at Sat Mar 19 19:16:59 ICT 2016
+#
+online2-wav-gmm-latgen-faster --do-endpointing=false --config=exp/tri3b_online/conf/online_decoding.conf --max-active=7000 --beam=20.0 --lattice-beam=10.0 --acoustic-scale=0.083333 --word-symbol-table=exp/tri3b/graph/words.txt exp/tri3b/graph/HCLG.fst ark:mytest/test-3/split1/1/spk2utt scp:mytest/test-3/split1/1/wav.scp 'ark:|gzip -c > exp/tri3b_online/decode/lat.1.gz' 
+wave_data.Data().NumCols() : 50672
+chunk_length : 800
+data.Dim() : 50672
+duong-part1-test1 không chín một ba không một không sáu bảy không 
+LOG (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:224) Decoded utterance duong-part1-test1
+wave_data.Data().NumCols() : 49487
+chunk_length : 800
+data.Dim() : 49487
+duong-part1-test2 không chín một ba hai bốn chín một hai năm 
+LOG (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:224) Decoded utterance duong-part1-test2
+wave_data.Data().NumCols() : 50898
+chunk_length : 800
+data.Dim() : 50898
+duong-part1-test3 không chín một hai một không năm sáu tám hai 
+LOG (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:224) Decoded utterance duong-part1-test3
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance duong-part1-test4
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance duong-part1-test5
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance duong-part1-test6
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance duong-part1-test7
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance huong-part1-test1
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance huong-part1-test2
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance huong-part1-test3
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance huong-part1-test4
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance huong-part1-test5
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance huong-part1-test6
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance linh-part1-test1
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance linh-part1-test2
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance linh-part1-test3
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance linh-part1-test4
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance linh-part1-test5
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance linh-part1-test6
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance loc-part1-test1
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance loc-part1-test2
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance loc-part1-test3
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance loc-part1-test4
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance loc-part1-test5
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance loc-part1-test6
+WARNING (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:157) Did not find audio for utterance loc-part1-test7
+LOG (online2-wav-gmm-latgen-faster:Print():online-timing.cc:36) Timing stats: real-time factor was 1.0237 (note: this cannot be less than one.)
+LOG (online2-wav-gmm-latgen-faster:Print():online-timing.cc:38) Average delay was 0.0745943 seconds.
+LOG (online2-wav-gmm-latgen-faster:Print():online-timing.cc:42) Percentage of time spent idling was 95.1044
+LOG (online2-wav-gmm-latgen-faster:Print():online-timing.cc:44) Longest delay was 0.0774431 seconds for utterance 'duong-part1-test3'
+LOG (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:229) Decoded 3 utterances, 23 with errors.
+LOG (online2-wav-gmm-latgen-faster:main():online2-wav-gmm-latgen-faster.cc:231) Overall likelihood per frame was -8.58182 per frame over 938 frames.
+# Accounting: time=1 threads=1
+# Ended (code 0) at Sat Mar 19 19:17:00 ICT 2016, elapsed time 1 seconds

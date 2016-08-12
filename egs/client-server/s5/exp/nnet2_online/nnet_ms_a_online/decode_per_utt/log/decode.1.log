@@ -1,0 +1,68 @@
+# online2-wav-nnet2-latgen-faster --online=true --do-endpointing=false --config=exp/nnet2_online/nnet_ms_a_online/conf/online_nnet2_decoding.conf --max-active=7000 --beam=20.0 --lattice-beam=10.0 --acoustic-scale=0.1 --word-symbol-table=exp/tri3b/graph/words.txt exp/nnet2_online/nnet_ms_a_online/final.mdl exp/tri3b/graph/HCLG.fst ark:exp/nnet2_online/nnet_ms_a_online/decode_per_utt/per_utt/utt2spk.1 "ark,s,cs:wav-copy scp,p:mytest/test-duong1/split1/1/wav.scp ark:- |" "ark:|gzip -c > exp/nnet2_online/nnet_ms_a_online/decode_per_utt/lat.1.gz" 
+# Started at Fri Mar  4 09:49:03 ICT 2016
+#
+online2-wav-nnet2-latgen-faster --online=true --do-endpointing=false --config=exp/nnet2_online/nnet_ms_a_online/conf/online_nnet2_decoding.conf --max-active=7000 --beam=20.0 --lattice-beam=10.0 --acoustic-scale=0.1 --word-symbol-table=exp/tri3b/graph/words.txt exp/nnet2_online/nnet_ms_a_online/final.mdl exp/tri3b/graph/HCLG.fst ark:exp/nnet2_online/nnet_ms_a_online/decode_per_utt/per_utt/utt2spk.1 'ark,s,cs:wav-copy scp,p:mytest/test-duong1/split1/1/wav.scp ark:- |' 'ark:|gzip -c > exp/nnet2_online/nnet_ms_a_online/decode_per_utt/lat.1.gz' 
+LOG (online2-wav-nnet2-latgen-faster:ComputeDerivedVars():ivector-extractor.cc:183) Computing derived variables for iVector extractor
+LOG (online2-wav-nnet2-latgen-faster:ComputeDerivedVars():ivector-extractor.cc:204) Done.
+wav-copy scp,p:mytest/test-duong1/split1/1/wav.scp ark:- 
+duong-part1-test1 không chín một ba không hai một không sáu bảy không 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance duong-part1-test1
+duong-part1-test2 không chín một ba hai bốn chín một hai năm 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance duong-part1-test2
+duong-part1-test3 không chín một hai hai một không năm sáu tám hai 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance duong-part1-test3
+duong-part1-test4 ba sáu tám hai bốn năm bảy bốn chín một 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance duong-part1-test4
+duong-part1-test5 hai ba bốn chín hai ba bốn năm bảy 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance duong-part1-test5
+duong-part1-test6 một hai hai ba bốn năm sáu bảy tám chín 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance duong-part1-test6
+duong-part1-test7 năm sáu tám ba hai bốn một bảy không chín hai bốn một năm sáu chín tám bảy hai một không năm sáu tám hai ba bảy bốn chín sáu tám ba hai 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance duong-part1-test7
+huong-part1-test1 không bốn chín bốn sáu một ba ba không sáu không sáu bảy không không 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance huong-part1-test1
+huong-part1-test2 không chín sáu bảy ba bốn chín sáu hai tám 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance huong-part1-test2
+huong-part1-test3 sáu bảy bốn sáu hai một không tám tám ba 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance huong-part1-test3
+huong-part1-test4 ba sáu sáu tám hai không bốn tám bảy bốn bốn sáu 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance huong-part1-test4
+huong-part1-test5 sáu sáu bốn bốn sáu ba bốn tám sáu 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance huong-part1-test5
+huong-part1-test6 sáu hai ba bốn hai sáu bảy 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance huong-part1-test6
+linh-part1-test1 không chín một ba không một không không bảy không 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance linh-part1-test1
+linh-part1-test2 không bốn chín một bảy sáu hai bốn chín một hai năm 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance linh-part1-test2
+linh-part1-test3 không chín bảy một năm không một không năm sáu năm năm 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance linh-part1-test3
+linh-part1-test4 sáu năm sáu năm năm tám bốn tám bảy bốn chín một 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance linh-part1-test4
+linh-part1-test5 năm bốn bốn chín hai hai năm năm một 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance linh-part1-test5
+linh-part1-test6 một năm một sáu bốn năm sáu bảy không chín 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance linh-part1-test6
+loc-part1-test1 không chín một ba không một không sáu bảy không 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance loc-part1-test1
+loc-part1-test2 không chín một ba hai bốn chín một hai năm 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance loc-part1-test2
+loc-part1-test3 không chín một hai một không năm sáu tám sáu hai 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance loc-part1-test3
+loc-part1-test4 ba sáu ba tám hai bốn năm bảy bốn chín một 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance loc-part1-test4
+loc-part1-test5 hai ba bốn chín hai ba bốn năm bảy 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance loc-part1-test5
+loc-part1-test6 một hai ba bốn năm sáu bảy tám chín 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance loc-part1-test6
+LOG (wav-copy:main():wav-copy.cc:56) Copied 26 wave files
+loc-part1-test7 năm sáu tám ba hai bốn một bảy không chín hai bốn một năm sáu chín tám bảy hai một không năm sáu tám hai ba bảy bốn chín sáu tám ba hai 
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:272) Decoded utterance loc-part1-test7
+LOG (online2-wav-nnet2-latgen-faster:Print():online-timing.cc:36) Timing stats: real-time factor was 1.00648 (note: this cannot be less than one.)
+LOG (online2-wav-nnet2-latgen-faster:Print():online-timing.cc:38) Average delay was 0.0294484 seconds.
+LOG (online2-wav-nnet2-latgen-faster:Print():online-timing.cc:42) Percentage of time spent idling was 92.6086
+LOG (online2-wav-nnet2-latgen-faster:Print():online-timing.cc:44) Longest delay was 0.084327 seconds for utterance 'duong-part1-test7'
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:278) Decoded 26 utterances, 0 with errors.
+LOG (online2-wav-nnet2-latgen-faster:main():online2-wav-nnet2-latgen-faster.cc:280) Overall likelihood per frame was -0.274554 per frame over 11767 frames.
+# Accounting: time=10 threads=1
+# Ended (code 0) at Fri Mar  4 09:49:13 ICT 2016, elapsed time 10 seconds

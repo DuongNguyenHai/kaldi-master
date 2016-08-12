@@ -1,0 +1,5 @@
+# cat exp/nnet2_online/nnet_ms_a_online/decode_per_utt/scoring/12.tra | utils/int2sym.pl -f 2- exp/tri3b/graph/words.txt | sed s:\<UNK\>::g | compute-wer --text --mode=present ark:exp/nnet2_online/nnet_ms_a_online/decode_per_utt/scoring/test_filt.txt ark,p:- >& exp/nnet2_online/nnet_ms_a_online/decode_per_utt/wer_12 
+# Started at Fri Mar  4 09:49:13 ICT 2016
+#
+# Accounting: time=0 threads=1
+# Ended (code 0) at Fri Mar  4 09:49:13 ICT 2016, elapsed time 0 seconds
