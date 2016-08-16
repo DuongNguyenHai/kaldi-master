@@ -45,7 +45,7 @@ x=`uname -a | awk '{print $(NF-1)}'`
 if [ "$x" == "i686" -o "$x" == "x86" ]; then
   opt="-b 32"
 fi
-
+# echo `pwd`
 ../configure $opt --prefix=`pwd`/install || exit 1;
 make -j 2 || exit 1;
 make check -j 2 || exit 1;
