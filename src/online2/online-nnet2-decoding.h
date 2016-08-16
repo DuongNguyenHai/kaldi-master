@@ -98,8 +98,12 @@ class SingleUtteranceNnet2Decoder {
   /// all final-probs as one.
   void GetBestPath(bool end_of_utterance,
                    Lattice *best_path) const;
-
-
+  /// Nguyen Hai Duong [
+  void ClearAll(){
+    // std::cout << "clear all !\n";
+    decoder_.InitDecoding();
+  }
+  /// ]
   /// This function calls EndpointDetected from online-endpoint.h,
   /// with the required arguments.
   bool EndpointDetected(const OnlineEndpointConfig &config);

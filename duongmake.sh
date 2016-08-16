@@ -28,16 +28,16 @@ case $OPT in
 		-DHAVE_CXXABI_H -DHAVE_ATLAS -I ../../tools/ATLAS/include \
 		-I ../../tools/openfst/include  \
 		-I ../../tools/portaudio/install/include -g  -rdynamic \
-		-Wl,-rpath=$D_LIBS/openfst/lib   \
+		-Wl,-rpath=$D_LIBS/openfst/lib \
 		server-dnn-online.cc ../online/kaldi-online.a ../online2/kaldi-online2.a \
 		../ivector/kaldi-ivector.a ../nnet2/kaldi-nnet2.a ../lat/kaldi-lat.a \
 		../decoder/kaldi-decoder.a ../cudamatrix/kaldi-cudamatrix.a \
 		../feat/kaldi-feat.a ../transform/kaldi-transform.a ../gmm/kaldi-gmm.a \
 		../thread/kaldi-thread.a ../hmm/kaldi-hmm.a ../tree/kaldi-tree.a \
 		../matrix/kaldi-matrix.a ../fstext/kaldi-fstext.a ../util/kaldi-util.a \
-		../base/kaldi-base.a   -L ../../tools/openfst/lib \
-		-lfst /usr/lib/libatlas.so.3 /usr/lib/libf77blas.so.3 /usr/lib/libcblas.so.3 \
-		/usr/lib/liblapack_atlas.so.3 -lm -lpthread -ldl  -o server-dnn-online;;
+		../base/kaldi-base.a   -L ../../tools/openfst/lib -lfst \
+		/usr/lib/libcblas.so.3 \
+		/usr/lib/liblapack_atlas.so.3 -lm -lpthread -ldl -o server-dnn-online;;
 
 
 	4)	# Compile client-pa for test online-decoding in "voxfore demo"

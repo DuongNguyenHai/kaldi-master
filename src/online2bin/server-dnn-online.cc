@@ -46,10 +46,9 @@
 #include <pthread.h> //for threading , link with lpthread
 
 namespace kaldi {
-/*
- * This class is for a very simple TCP server implementation
- * in UNIX sockets.
- */
+
+// This class is for a very simple TCP server implementation in UNIX sockets.
+
 class TcpServer {
  public:
   TcpServer();
@@ -60,7 +59,7 @@ class TcpServer {
 
  private:
   struct sockaddr_in h_addr_, client;
-  int32 server_desc_, client_desc, *new_sock;
+  int32 server_desc_, clntSock, *new_sock;
 };
 
 //write a line of text to socket
@@ -98,14 +97,24 @@ fst::SymbolTable *word_syms = NULL;
 
 OnlineNnet2FeaturePipelineInfo *feature_info;
 OnlineIvectorExtractorAdaptationState *adaptation_state;
-//
-void GetDiagnosticsAndSendClient(const fst::SymbolTable *word_syms,
+
+pthread_t threadID;              /* Thread ID from pthread_create() */
+struct ThreadArgs *threadArgs;   /* Pointer to argument structure for thread */
+
+// get word from lattice and sent word to client
+inline void GetDiagnosticsAndSendClient(const fst::SymbolTable *word_syms,
                                   const CompactLattice &clat,
                                   std::vector<int32> &words,
-                                  int32& client_socket);
-void SentWord(const fst::SymbolTable *word_syms,
+                                  int32& clntSock);
+// sent word to client
+inline void SentWord(const fst::SymbolTable *word_syms,
               std::vector<int32> &words,
-              int32 &client_socket);
+              int32 &clntSock);
+// Socket descriptor for client
+struct ThreadArgs{
+    int clntSock;
+};
+// Decoding a client
 void *DecodeClient(void *);
 
 }  // namespace kaldi
@@ -277,14 +286,16 @@ int32 TcpServer::Accept() {
 
   len = sizeof(struct sockaddr);
 
-  while( (client_desc = accept(server_desc_, (struct sockaddr*) &client, &len) )) {
-    std::cout<<"+ New client["<<client_desc<<"]["<<inet_ntoa(client.sin_addr)<<"]["<<ntohs(client.sin_port)<<"]\n";
-    pthread_t sniffer_thread;
+  while( (clntSock = accept(server_desc_, (struct sockaddr*) &client, &len) )) {
+    std::cout<<"+ New client["<<clntSock<<"]["<<inet_ntoa(client.sin_addr)<<"]["<<ntohs(client.sin_port)<<"]\n";
+    
+    // Create separate memory for client argument
+    if ((threadArgs = (struct ThreadArgs *)malloc(sizeof(struct ThreadArgs))) == NULL)
+        perror("malloc() failed");
+
+    threadArgs -> clntSock = clntSock;
   
-    new_sock = new int[1];
-    *new_sock = client_desc;
-  
-    if( pthread_create( &sniffer_thread , NULL ,  DecodeClient , (void*) new_sock) < 0)
+    if( pthread_create( &threadID, NULL ,  DecodeClient , (void *) threadArgs) < 0)
     {
         perror("could not create thread");
         return 1;
@@ -310,10 +321,11 @@ bool WriteLine(int32 socket, std::string line) {
 
   return true;
 }
-void GetDiagnosticsAndSendClient(const fst::SymbolTable *word_syms,
+
+inline void GetDiagnosticsAndSendClient(const fst::SymbolTable *word_syms,
                                   const CompactLattice &clat,
                                   std::vector<int32> &words,
-                                  int32& client_socket) {
+                                  int32& clntSock) {
   if (clat.NumStates() == 0) {
     // std::cout << "Empty lattice.\n";
     return;
@@ -329,14 +341,15 @@ void GetDiagnosticsAndSendClient(const fst::SymbolTable *word_syms,
 
   GetLinearSymbolSequence(best_path_lat, &alignment, &words, &weight);
   // std::cout << "words.size() : " << words.size() <<"\n";
-  SentWord(word_syms,words,client_socket);
+  SentWord(word_syms,words,clntSock);
   
 }
-void SentWord(const fst::SymbolTable *word_syms,
+
+inline void SentWord(const fst::SymbolTable *word_syms,
               std::vector<int32> &words,
-              int32& client_socket){
+              int32& clntSock){
   if (words.size() > 0) {
-    std::cout << "  client[" <<client_socket<< "] ";
+    std::cout << ". client[" <<clntSock<< "] ";
     for (size_t i = 0; i < words.size(); i++) {
       if (words[i] == 0)
         continue;  //skip silences...
@@ -346,21 +359,21 @@ void SentWord(const fst::SymbolTable *word_syms,
         word = "???";
 
       std::cout<<word<<' ';
-      WriteLine(client_socket, word.c_str()); // command sent string to client
+      WriteLine(clntSock, word.c_str()); // command sent string to client
     }
     std::cout<<std::endl;
-    WriteLine(client_socket, "...");
+    WriteLine(clntSock, "...");
   }else{
-    WriteLine(client_socket, "NONE");
+    WriteLine(clntSock, "NONE");
   }
 }
 
-void *DecodeClient(void *socket_desc){
+void *DecodeClient(void *threadArgs){
 
   OnlineTcpVectorSource* au_src = NULL;
-  int client_socket = *(int*)socket_desc;
+  int clntSock = ((struct ThreadArgs *) threadArgs) -> clntSock;
 
-  au_src = new OnlineTcpVectorSource(client_socket);
+  au_src = new OnlineTcpVectorSource(clntSock);
 
   OnlineNnet2FeaturePipeline feature_pipeline(*feature_info);
     feature_pipeline.SetAdaptationState(*adaptation_state);
@@ -372,37 +385,38 @@ void *DecodeClient(void *socket_desc){
                                       &feature_pipeline);
 
   Vector<BaseFloat> data(packet_size);
-  std::vector<std::pair<int32, BaseFloat> > delta_weights;
+  // std::vector<std::pair<int32, BaseFloat> > delta_weights;
   std::vector<int32> words;
   bool end_of_utterance = true;
 
   while(au_src->IsConnected()){
-    // if (!au_src->IsConnected()) break;
-    bool data_comming = au_src->Read(&data);
+      // if (!au_src->IsConnected()) break;
+      bool data_comming = au_src->Read(&data);
 
-    if (!au_src->IsConnected()) break;
+      if(!data_comming) {
+        // std::cout << "RESULT:DONE !!! \n";
+        WriteLine(clntSock, "RESULT:DONE");
+        continue;
+      }
 
-    if(data_comming){  
-      feature_pipeline.AcceptWaveform(samp_freq, data);
-      decoder.AdvanceDecoding();
-    }else{
-      decoder.FinalizeDecoding();
-    }
+      if (!au_src->IsConnected()) break;
 
-    CompactLattice clat;
-    decoder.GetLattice(end_of_utterance, &clat);
-    GetDiagnosticsAndSendClient(word_syms, clat, words,client_socket);
+      if(data_comming){  
+        feature_pipeline.AcceptWaveform(samp_freq, data);
+        decoder.AdvanceDecoding();
+      }else{
+        decoder.FinalizeDecoding();
+      }
+
+      CompactLattice clat;
+      decoder.GetLattice(end_of_utterance, &clat);
+      GetDiagnosticsAndSendClient(word_syms, clat, words,clntSock);
     
-    if(!data_comming) {
-      // std::cout << "RESULT:DONE !!! \n";
-      WriteLine(client_socket, "RESULT:DONE");
-      break;
-    }
   }
 
-  std::cout << "- Client[" <<client_socket<< "] Complete !" << std::endl;
-  free(socket_desc);
-
+  std::cout << "- Client[" <<clntSock<< "] Decoding complete !" << std::endl;
+  close(clntSock);
+  return 0;
 }
 
 }  // namespace kaldi

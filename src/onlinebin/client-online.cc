@@ -133,7 +133,7 @@ int main(int argc, char** argv) {
     SequentialTableReader < WaveHolder > reader(wav_rspecifier);
     for (; !reader.Done(); reader.Next()) {
       std::string wav_key = reader.Key();
-      // std::cout<< "wav_key : " << reader.Value() << "\n";
+      // std::cout<< "wav_key : " << wav_key << "\n";
       KALDI_VLOG(2) << "File: " << wav_key << std::endl;
 
       const WaveData &wave_data = reader.Value();
@@ -143,8 +143,8 @@ int main(int argc, char** argv) {
 
       int32 num_chan = wave_data.Data().NumRows(), this_chan = channel;
 
-      std::cout <<std::endl<< wav_key << " : ";
-      std::cout << wave_data.Data().NumCols() << " (dim)"  <<"\n";
+      std::cout <<std::endl<< wav_key << " : " << std::endl;
+      // std::cout << wave_data.Data().NumCols() << " (dim)"  <<"\n";
 
       {   // This block works out the channel (0=left, 1=right...)
         KALDI_ASSERT(num_chan > 0);  // should have been caught in
@@ -169,7 +169,7 @@ int main(int argc, char** argv) {
       Vector < BaseFloat > data(packet_size / 2);
 
       // clock_t start = clock();
-      int32 sent_times = 0;
+      // int32 sent_times = 0;
       bool flag_end = false;
       while (true) {
 
@@ -194,8 +194,8 @@ int main(int argc, char** argv) {
           //   }
           //   client_file.close();
           // }
-          sent_times++;
-          usleep(2000000);
+          // sent_times++;
+          usleep(1000000);
         }else{
           // send last packet
           // std::cout << "Send last packet !\n";

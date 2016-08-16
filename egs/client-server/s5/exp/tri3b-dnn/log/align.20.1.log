@@ -1,22 +1,22 @@
 # gmm-align-compiled --transition-scale=1.0 --acoustic-scale=0.1 --self-loop-scale=0.1 --beam=10 --retry-beam=40 --careful=false "gmm-boost-silence --boost=1.0 1 exp/tri3b/20.mdl - |" "ark:gunzip -c exp/tri3b/fsts.1.gz|" "ark,s,cs:apply-cmvn  --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:data/train/split1/1/feats.scp ark:- | splice-feats --left-context=3 --right-context=3 ark:- ark:- | transform-feats exp/tri2b_ali/final.mat ark:- ark:- | transform-feats --utt2spk=ark:data/train/split1/1/utt2spk ark:exp/tri3b/trans.1 ark:- ark:- |" "ark:|gzip -c >exp/tri3b/ali.1.gz" 
-# Started at Fri Mar  4 00:32:29 ICT 2016
+# Started at Sun May 22 22:47:56 ICT 2016
 #
 gmm-align-compiled --transition-scale=1.0 --acoustic-scale=0.1 --self-loop-scale=0.1 --beam=10 --retry-beam=40 --careful=false 'gmm-boost-silence --boost=1.0 1 exp/tri3b/20.mdl - |' 'ark:gunzip -c exp/tri3b/fsts.1.gz|' 'ark,s,cs:apply-cmvn  --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:data/train/split1/1/feats.scp ark:- | splice-feats --left-context=3 --right-context=3 ark:- ark:- | transform-feats exp/tri2b_ali/final.mat ark:- ark:- | transform-feats --utt2spk=ark:data/train/split1/1/utt2spk ark:exp/tri3b/trans.1 ark:- ark:- |' 'ark:|gzip -c >exp/tri3b/ali.1.gz' 
 gmm-boost-silence --boost=1.0 1 exp/tri3b/20.mdl - 
 WARNING (gmm-boost-silence:main():gmm-boost-silence.cc:82) The pdfs for the silence phones may be shared by other phones (note: this probably does not matter.)
 LOG (gmm-boost-silence:main():gmm-boost-silence.cc:93) Boosted weights for 5 pdfs, by factor of 1
 LOG (gmm-boost-silence:main():gmm-boost-silence.cc:103) Wrote model to -
-splice-feats --left-context=3 --right-context=3 ark:- ark:- 
-transform-feats exp/tri2b_ali/final.mat ark:- ark:- 
-transform-feats --utt2spk=ark:data/train/split1/1/utt2spk ark:exp/tri3b/trans.1 ark:- ark:- 
 apply-cmvn --utt2spk=ark:data/train/split1/1/utt2spk scp:data/train/split1/1/cmvn.scp scp:data/train/split1/1/feats.scp ark:- 
-LOG (apply-cmvn:main():apply-cmvn.cc:146) Applied cepstral mean normalization to 1071 utterances, errors on 0
-LOG (transform-feats:main():transform-feats.cc:158) Overall average [pseudo-]logdet is -84.8605 over 400632 frames.
-LOG (transform-feats:main():transform-feats.cc:161) Applied transform to 1071 utterances; 0 had errors.
-LOG (transform-feats:main():transform-feats.cc:158) Overall average logdet is 3.59255 over 400632 frames.
-LOG (transform-feats:main():transform-feats.cc:161) Applied transform to 1071 utterances; 0 had errors.
-LOG (gmm-align-compiled:main():gmm-align-compiled.cc:129) Overall log-likelihood per frame is -49.7145 over 400632 frames.
-LOG (gmm-align-compiled:main():gmm-align-compiled.cc:131) Retried 0 out of 1071 utterances.
-LOG (gmm-align-compiled:main():gmm-align-compiled.cc:133) Done 1071, errors on 0
-# Accounting: time=8 threads=1
-# Ended (code 0) at Fri Mar  4 00:32:37 ICT 2016, elapsed time 8 seconds
+splice-feats --left-context=3 --right-context=3 ark:- ark:- 
+transform-feats --utt2spk=ark:data/train/split1/1/utt2spk ark:exp/tri3b/trans.1 ark:- ark:- 
+transform-feats exp/tri2b_ali/final.mat ark:- ark:- 
+LOG (apply-cmvn:main():apply-cmvn.cc:146) Applied cepstral mean normalization to 1062 utterances, errors on 0
+LOG (transform-feats:main():transform-feats.cc:158) Overall average [pseudo-]logdet is -84.9037 over 394582 frames.
+LOG (transform-feats:main():transform-feats.cc:161) Applied transform to 1062 utterances; 0 had errors.
+LOG (transform-feats:main():transform-feats.cc:158) Overall average logdet is 3.33121 over 394582 frames.
+LOG (transform-feats:main():transform-feats.cc:161) Applied transform to 1062 utterances; 0 had errors.
+LOG (gmm-align-compiled:main():gmm-align-compiled.cc:129) Overall log-likelihood per frame is -49.8141 over 394582 frames.
+LOG (gmm-align-compiled:main():gmm-align-compiled.cc:131) Retried 0 out of 1062 utterances.
+LOG (gmm-align-compiled:main():gmm-align-compiled.cc:133) Done 1062, errors on 0
+# Accounting: time=14 threads=1
+# Ended (code 0) at Sun May 22 22:48:10 ICT 2016, elapsed time 14 seconds
